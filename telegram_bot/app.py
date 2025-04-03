@@ -3,17 +3,26 @@ from aiogram import Bot, Dispatcher, types
 from dotenv import load_dotenv
 import os
 
+from handlers.user_private import user_private_router
+
+
+# Разрешенные типы обновлений (https://core.telegram.org/bots/api#update)
+ALLOWED_UPDATES = ['message', 'edited_message']
+
+
 load_dotenv()
 
-bot = Bot(os.getenv('TOKEN'))
+bot = Bot(token=os.getenv('TOKEN'))
 dp = Dispatcher()
 
-@dp.message()
-async def ping(message: types.Message) -> None:
-    await bot.send_message(message.from_user.id, "tuk-tuk")
+# @dp.message()
+# async def ping(message: types.Message):
+#     await bot.send_message(message.from_user.id, "tuk-tuk")
+
+dp.include_router(user_private_router)
 
 async def main():
-    await dp.start_polling(bot)
+    await dp.start_polling(bot, allowed_updates=ALLOWED_UPDATES)
 
 
 asyncio.run(main())    
