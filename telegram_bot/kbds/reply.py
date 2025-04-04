@@ -1,5 +1,5 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton 
-
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove 
+from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
 start_kb = ReplyKeyboardMarkup(
 	# согласно документации клавиатуру дложна быть списком из списов.
@@ -15,3 +15,22 @@ start_kb = ReplyKeyboardMarkup(
 	],
     resize_keyboard=True
 )
+
+staff_kb = ReplyKeyboardMarkup(
+	# keyboard = [
+	# 	[KeyboardButton(text='Пункты предрейсового осмотра')],
+	# 	[KeyboardButton(text='Требования оклейки автомобиля')],
+    #     [KeyboardButton(text='Контакты парка')],
+	# 	[KeyboardButton(text='Заказать расчет')]
+	# ],
+    keyboard = [
+		[KeyboardButton(text='Пункты предрейсового осмотра')],
+        [KeyboardButton(text='Требования оклейки автомобиля')],
+        [KeyboardButton(text='Контакты парка')],
+        [KeyboardButton(text='Заказать расчет')]
+	],
+    resize_keyboard=True
+)
+
+
+#del_start_kb = ReplyKeyboardRemove()
