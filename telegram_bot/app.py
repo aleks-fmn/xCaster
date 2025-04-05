@@ -1,5 +1,7 @@
 import asyncio
 from aiogram import Bot, Dispatcher, types
+from aiogram.client.default import DefaultBotProperties
+from aiogram.enums import ParseMode
 from dotenv import load_dotenv
 import os
 
@@ -12,8 +14,11 @@ ALLOWED_UPDATES = ['message', 'edited_message']
 
 load_dotenv()
 
-bot = Bot(token=os.getenv('TOKEN'))
+bot = Bot(token=os.getenv('TOKEN'), 
+          default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+
 dp = Dispatcher()
+
 
 # @dp.message()
 # async def ping(message: types.Message):

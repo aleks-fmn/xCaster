@@ -1,5 +1,6 @@
 from aiogram import F, types, Router
-from aiogram.filters import CommandStart, Command
+from aiogram.filters import CommandStart, Command, or_f
+from aiogram.utils.formatting import as_line, as_list, as_marked_section, Bold 
 
 from kbds import reply
 
@@ -15,6 +16,8 @@ greeter_text = """
 	В данном канале Вы найдете ответы на все
 	интересующие вопросы."""
 
+undef_behavior_text = """С удовольствием поговорил бы с Вами на отвелеченные темы
+	Но мой создатель ограничиил мою свободу определенными командами."""
 
 user_private_router = Router()
 
@@ -23,9 +26,39 @@ async def start_cmd(message: types.Message):
 	await message.answer(greeter_text, reply_markup=reply.start_kb)
 
 
-@user_private_router.message(Command('staff'))
+@user_private_router.message(or_f(Command('get_contact'), 
+								  F.text.lower().contains('контакты парка')))
+async def get_contact(message: types.Message):
+	text = as_marked_section(
+		Bold("Контакты:"),
+		"Телефон: +375293305566",
+		"Email: haukaster@yandex.ru",
+		"Подробнее: https://haukaster.by",
+		marker="  ",
+	)
+	await message.answer(text.as_html(), reply_markup=reply.to_main_kb)
+
+
+@user_private_router.message(or_f(Command('pretrip_inspection'), 
+								  F.text.lower().contains('Пункты предрейсового осмотра')))
+async def pretrip_inspection(message: types.Message):
+	await message.answer('pretrip_inspection point', reply_markup=reply.to_main_kb)
+
+
+@user_private_router.message(or_f(Command('staff'), F.text.lower().contains('для сотрудников')))
 async def staff_cmd(message: types.Message):
 	await message.answer('text', reply_markup=reply.staff_kb)
-	#await message.answer('Сообщения для сотрудников', reply_markup=reply.staff_kb)
+
+
+@user_private_router.message(or_f(Command('to_main'), 
+								  F.text.lower().contains('на главную')))
+async def to_main_cmd(message: types.Message):
+	await message.answer('На главную', reply_markup=reply.start_kb)
+
+
+@user_private_router.message(F.text)
+async def invalid_cmd(message: types.Message):
+	await message.answer(undef_behavior_text)
+
 	
 
