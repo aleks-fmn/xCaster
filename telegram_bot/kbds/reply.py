@@ -32,5 +32,11 @@ staff_kb = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
+to_main_kb = ReplyKeyboardMarkup(
+    keyboard = [
+		[KeyboardButton(text='На главную')]
+	],
+    resize_keyboard=True
+)
 
 #del_start_kb = ReplyKeyboardRemove()
