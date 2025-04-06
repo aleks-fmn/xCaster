@@ -2,6 +2,7 @@ from aiogram import F, types, Router
 from aiogram.filters import CommandStart, Command, or_f
 from aiogram.utils.formatting import as_line, as_list, as_marked_section, Bold 
 
+
 from kbds import reply
 
 
@@ -39,6 +40,27 @@ async def get_contact(message: types.Message):
 	await message.answer(text.as_html(), reply_markup=reply.to_main_kb)
 
 
+@user_private_router.message(or_f(Command('requirements_to_car'), 
+								  F.text.lower().contains('требования оклейки автомобиля')))
+async def get_contact(message: types.Message):
+	await message.answer_photo(
+		photo=types.FSInputFile(path='./media/taxi_white.jpg'), 
+		caption='Белый',
+		show_caption_above_media=True
+	)
+	await message.answer_photo(
+		photo=types.FSInputFile(path='./media/taxi_yellow.jpg'), 
+		caption='Желтый', 
+		show_caption_above_media=True
+	)
+	await message.answer_photo(
+		photo=types.FSInputFile(path='./media/taxi_black.jpg'), 
+		caption='Черный', 
+		show_caption_above_media=True,
+		reply_markup=reply.to_main_kb
+	)
+
+
 @user_private_router.message(or_f(Command('pretrip_inspection'), 
 								  F.text.lower().contains('Пункты предрейсового осмотра')))
 async def pretrip_inspection(message: types.Message):
@@ -59,6 +81,7 @@ async def to_main_cmd(message: types.Message):
 @user_private_router.message(F.text)
 async def invalid_cmd(message: types.Message):
 	await message.answer(undef_behavior_text)
+
 
 	
 
