@@ -32,6 +32,31 @@ staff_kb = ReplyKeyboardMarkup(
     resize_keyboard=True
 )
 
+req_driver_kb = ReplyKeyboardMarkup(
+    keyboard = [
+		[KeyboardButton(text='Требования к водителю для вступления в реестр')],
+        [KeyboardButton(text='На главную')]
+	],
+    resize_keyboard=True
+)
+
+req_car_kb = ReplyKeyboardMarkup(
+    keyboard = [
+		[KeyboardButton(text='Требования к автомобилю для вступления в реестр')],
+        [KeyboardButton(text='Подать документы')],
+        [KeyboardButton(text='На главную')]
+	],
+    resize_keyboard=True
+)
+
+send_doc_kb = ReplyKeyboardMarkup(
+    keyboard = [
+		[KeyboardButton(text='Подать документы')],
+        [KeyboardButton(text='На главную')]
+	],
+    resize_keyboard=True
+)
+
 to_main_kb = ReplyKeyboardMarkup(
     keyboard = [
 		[KeyboardButton(text='На главную')]
