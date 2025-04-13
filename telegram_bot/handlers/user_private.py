@@ -1,3 +1,11 @@
+""""
+Filename: user_private.py
+-----------------------------------------------------------------------
+
+Этот файл выполняет обработку диалогов пользователя.
+"""
+
+
 from aiogram import F, types, Router
 from aiogram.filters import CommandStart, Command, or_f
 from aiogram.utils.formatting import as_line, as_list, as_marked_section, Bold 

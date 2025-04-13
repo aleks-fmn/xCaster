@@ -1,3 +1,12 @@
+""""
+Filename: app.py
+-----------------------------------------------------------------------
+
+Этот файл является точкой входа программы.
+В этом файле определяется "токен" и режим парсера.
+"""
+
+
 import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.client.default import DefaultBotProperties

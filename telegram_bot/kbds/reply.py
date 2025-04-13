@@ -1,3 +1,11 @@
+""""
+Filename: reply.py
+-----------------------------------------------------------------------
+
+Этот файл выполняет построение клавиатур используемых в работе бота.
+"""
+
+
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove 
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
